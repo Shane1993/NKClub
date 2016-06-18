@@ -39,8 +39,8 @@ public class GetClubPictureUrl
                         @Override
                         public void onSuccess(Club club)
                         {
-                            BmobFile file = club.getPicture();
-                            String clubPictureUrl = file.getFileUrl(context);
+
+                            String clubPictureUrl = club.getIconUrl();
 
                             if(successCallback != null)
                             {

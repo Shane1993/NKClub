@@ -11,6 +11,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.ImageSize;
+
 import net.lzs.club.R;
 import net.lzs.club.model.Club;
 import net.lzs.club.util.GetBitmapFromClubName;
@@ -25,10 +29,21 @@ public class AdapterClub extends BaseAdapter
     private Context context;
     private List<Club> list;
 
+    private DisplayImageOptions options;
+    private ImageLoader imageLoader = ImageLoader.getInstance();
+
+
     public AdapterClub(Context context,List<Club> list)
     {
         this.context = context;
         this.list = list;
+
+        options = new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.mipmap.icon)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .considerExifParams(true)
+                .build();
     }
 
 
@@ -72,14 +87,7 @@ public class AdapterClub extends BaseAdapter
 
         Club club = getItem(position);
 
-        Bitmap bm = GetBitmapFromClubName.getBitmap(club.getName());
-        if(bm == null)
-        {
-            viewHolder.ivIcon.setImageResource(R.mipmap.icon);
-        }else
-        {
-            viewHolder.ivIcon.setImageBitmap(bm);
-        }
+        imageLoader.displayImage(club.getIconUrl(),viewHolder.ivIcon,options);
         viewHolder.tvName.setText(club.getName());
         viewHolder.tvType.setText(club.getType());
         viewHolder.tvDescription.setText(club.getDescription());

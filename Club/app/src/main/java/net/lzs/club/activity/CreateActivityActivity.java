@@ -106,6 +106,8 @@ public class CreateActivityActivity extends Activity implements DatePickerDialog
         activity.setTime(tvTime.getText().toString());
         activity.setContent(etContent.getText().toString());
         activity.setBelongs(Config.getCachedData(CreateActivityActivity.this, CacheType.USERNAME));
+        activity.setIconUri(Config.getCachedKVData(getApplicationContext(),activity.getOrganizer()));
+
 
         activity.save(CreateActivityActivity.this, new SaveListener()
         {

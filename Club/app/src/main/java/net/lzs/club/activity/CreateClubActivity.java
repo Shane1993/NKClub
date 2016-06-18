@@ -133,7 +133,8 @@ public class CreateClubActivity extends Activity implements DatePickerDialog.OnD
                         Config.getCachedData(CreateClubActivity.this,CacheType.USERNAME)
                 );
 
-                club.setPicture(file);
+//                club.setPicture(file);
+                club.setIconUrl(file.getFileUrl(getApplicationContext()));
 
                 Log.i("CreateClubActivity",club.toString());
 
@@ -146,17 +147,24 @@ public class CreateClubActivity extends Activity implements DatePickerDialog.OnD
                         Toast.makeText(CreateClubActivity.this, "创建社团成功", Toast.LENGTH_SHORT).show();
 
 
+
                         new GetClub(CreateClubActivity.this, club.getName(), new GetClub.SuccessCallback()
                         {
                             @Override
                             public void onSuccess(Club club)
                             {
                                 Intent data = new Intent();
-                                data.putExtra(Config.OBJECTID,club.getObjectId());
-                                data.putExtra(Config.CLUBNAME,club.getName());
-                                data.putExtra(Config.CLUBTYPE,club.getType());
-                                data.putExtra(Config.CLUBTIME,club.getTime());
-                                data.putExtra(Config.CLUBDESCRIPTION,club.getDescription());
+//                                data.putExtra(Config.OBJECTID,club.getObjectId());
+//                                data.putExtra(Config.CLUBNAME,club.getName());
+//                                data.putExtra(Config.CLUBTYPE,club.getType());
+//                                data.putExtra(Config.CLUBTIME,club.getTime());
+//                                data.putExtra(Config.CLUBDESCRIPTION,club.getDescription());
+//                                data.putExtra(Config.CLUBICONURI,club.getIconUrl());
+
+                                data.putExtra(Config.CLUB,club);
+
+                                Log.i("CreateClubActivity","--------------------------");
+
                                 setResult(1,data);
                                 CreateClubActivity.this.finish();
                             }

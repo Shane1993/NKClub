@@ -53,6 +53,16 @@ public class Club extends BmobObject
         this.description = description;
         this.belongs = belongs;
     }
+    public Club(String objectIdFromServer, String name, String type, String time, String description, String belongs, String iconUrl)
+    {
+        setObjectId(objectIdFromServer);
+        this.name = name;
+        this.type = type;
+        this.time = time;
+        this.description = description;
+        this.belongs = belongs;
+        this.iconUrl = iconUrl;
+    }
 
     public String getName()
     {

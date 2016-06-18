@@ -12,6 +12,9 @@ public class Activity extends BmobObject
     private String time;
     private String content;
     private String belongs;
+
+    private String iconUri;
+
     public Activity()
     {
     }
@@ -32,6 +35,16 @@ public class Activity extends BmobObject
         this.time = time;
         this.content = content;
         this.belongs = belongs;
+    }
+    public Activity(String objectId,String name, String organizer, String time, String content,String belongs, String iconUri)
+    {
+        setObjectId(objectId);
+        this.name = name;
+        this.organizer = organizer;
+        this.time = time;
+        this.content = content;
+        this.belongs = belongs;
+        this.iconUri = iconUri;
     }
 
 
@@ -83,6 +96,16 @@ public class Activity extends BmobObject
     public void setBelongs(String belongs)
     {
         this.belongs = belongs;
+    }
+
+    public String getIconUri()
+    {
+        return iconUri;
+    }
+
+    public void setIconUri(String iconUri)
+    {
+        this.iconUri = iconUri;
     }
 
     @Override

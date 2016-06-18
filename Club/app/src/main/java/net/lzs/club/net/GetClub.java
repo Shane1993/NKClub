@@ -37,7 +37,8 @@ public class GetClub
                     String clubType = jsonObject.getString(Config.CLUBTYPE);
                     String clubTime = jsonObject.getString(Config.CLUBTIME);
                     String clubDescription = jsonObject.getString(Config.CLUBDESCRIPTION);
-                    Club club = new Club(clubObjectId,clubName,clubType,clubTime,clubDescription,"");
+                    String clubIconUri = jsonObject.getString(Config.CLUBICONURI);
+                    Club club = new Club(clubObjectId,clubName,clubType,clubTime,clubDescription,"",clubIconUri);
 
                     if (successCallback != null)
                     {

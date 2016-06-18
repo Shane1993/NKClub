@@ -3,11 +3,9 @@ package net.lzs.club.fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,18 +17,13 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import net.lzs.club.R;
-import net.lzs.club.activity.LikedClubIntroductionActivity;
 import net.lzs.club.activity.CreateClubActivity;
+import net.lzs.club.activity.LikedClubIntroductionActivity;
 import net.lzs.club.activity.TypedClubsActivity;
 import net.lzs.club.adapter.AdapterClub;
-import net.lzs.club.config.CacheType;
 import net.lzs.club.config.Config;
 import net.lzs.club.model.Club;
-import net.lzs.club.net.GetClub;
-import net.lzs.club.net.GetClubPictureUrl;
-import net.lzs.club.net.GetClubsName;
-import net.lzs.club.util.DownloadPicture;
-import net.lzs.club.util.FileUtils;
+import net.lzs.club.net.GetClubs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,11 +40,11 @@ public class FragmentGroup extends Fragment implements AdapterView.OnItemClickLi
     AdapterClub adapterClub;
     List<Club> list;
 
+    GetClubs getClubs;
+
     LinearLayout llCreateClub;
 
     ImageButton btnTiyu, btnXiao, btnYuan, btnShijian, btnGongyi, btnKoucai;
-
-    ProgressDialog pd;
 
     @Nullable
     @Override
@@ -102,8 +95,30 @@ public class FragmentGroup extends Fragment implements AdapterView.OnItemClickLi
         btnGongyi.setOnClickListener(this);
         btnKoucai.setOnClickListener(this);
 
-        pd = new ProgressDialog(context);
-        pd.setMessage("获取社团信息中。。。");
+        getClubs = new GetClubs(context, 10, new GetClubs.SuccessCallback()
+        {
+            @Override
+            public void onSuccess(List<Club> result)
+            {
+                list.addAll(result);
+                adapterClub.notifyDataSetChanged();
+
+                //Cache the url
+                for (Club club : result)
+                {
+                    Config.cacheKVData(context, club.getName(), club.getIconUrl());
+                }
+
+
+            }
+        }, new GetClubs.FailCallback()
+        {
+            @Override
+            public void onFail(String errer)
+            {
+                Toast.makeText(context, errer, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         refreshList();
 
@@ -111,90 +126,92 @@ public class FragmentGroup extends Fragment implements AdapterView.OnItemClickLi
 
     private void refreshList()
     {
-        pd.show();
-        new GetClubsName(context, new GetClubsName.SuccessCallback()
-        {
-            @Override
-            public void onSuccess(String clubs)
-            {
+        getClubs.showNextClubs();
 
-                final String cachedClubs = Config.getCachedData(context, CacheType.CLUB);
 
-                if (cachedClubs.equals(clubs))
-                {
-                    return;
-                }
-
-                Config.cacheData(context, clubs, CacheType.CLUB);
-                final FileUtils fileUtils = new FileUtils();
-
-                new AsyncTask<String, Void, List<Club>>()
-                {
-                    @Override
-                    protected List<Club> doInBackground(String... params)
-                    {
-
-                        for (final String clubName : params)
-                        {
-                            if (!fileUtils.isFileExist(params + ".jpg", Config.APP_NAME))
-                            {
-                                new GetClubPictureUrl(context, clubName, new GetClubPictureUrl.SuccessCallback()
-                                {
-                                    @Override
-                                    public void onSuccess(String clubPictureUrl)
-                                    {
-                                        DownloadPicture.downFile(clubPictureUrl, Config.APP_NAME, clubName + ".jpg");
-
-                                        StringBuilder sb = new StringBuilder(Config.getCachedData(context, CacheType.CLUB));
-                                        sb.append("," + clubName);
-                                        Config.cacheData(context, sb.toString(), CacheType.CLUB);
-
-                                        new GetClub(context, clubName, new GetClub.SuccessCallback()
-                                        {
-                                            @Override
-                                            public void onSuccess(Club club)
-                                            {
-                                                list.add(club);
-                                                adapterClub.notifyDataSetChanged();
-                                            }
-                                        }, null);
-                                    }
-                                }, null);
-
-                                continue;
-                            }
-
-                            new GetClub(context, clubName, new GetClub.SuccessCallback()
-                            {
-                                @Override
-                                public void onSuccess(Club club)
-                                {
-
-                                    list.add(club);
-                                    adapterClub.notifyDataSetChanged();
-                                }
-                            }, null);
-                        }
-                        return null;
-                    }
-
-                    @Override
-                    protected void onPostExecute(List<Club> clubs)
-                    {
-                        pd.dismiss();
-                    }
-                }.execute(clubs.split(","));
-
-            }
-        }, new GetClubsName.FailCallback()
-        {
-            @Override
-            public void onFail()
-            {
-                pd.dismiss();
-                Toast.makeText(context, "加载社团失败", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        new GetClubsName(context, new GetClubsName.SuccessCallback()
+//        {
+//            @Override
+//            public void onSuccess(String clubs)
+//            {
+//
+//                final String cachedClubs = Config.getCachedData(context, CacheType.CLUB);
+//
+//                if (cachedClubs.equals(clubs))
+//                {
+//                    return;
+//                }
+//
+//                Config.cacheData(context, clubs, CacheType.CLUB);
+//                final FileUtils fileUtils = new FileUtils();
+//
+//                new AsyncTask<String, Void, List<Club>>()
+//                {
+//                    @Override
+//                    protected List<Club> doInBackground(String... params)
+//                    {
+//
+//                        for (final String clubName : params)
+//                        {
+//                            if (!fileUtils.isFileExist(params + ".jpg", Config.APP_NAME))
+//                            {
+//                                new GetClubPictureUrl(context, clubName, new GetClubPictureUrl.SuccessCallback()
+//                                {
+//                                    @Override
+//                                    public void onSuccess(String clubPictureUrl)
+//                                    {
+//                                        DownloadPicture.downFile(clubPictureUrl, Config.APP_NAME, clubName + ".jpg");
+//
+//                                        StringBuilder sb = new StringBuilder(Config.getCachedData(context, CacheType.CLUB));
+//                                        sb.append("," + clubName);
+//                                        Config.cacheData(context, sb.toString(), CacheType.CLUB);
+//
+//                                        new GetClub(context, clubName, new GetClub.SuccessCallback()
+//                                        {
+//                                            @Override
+//                                            public void onSuccess(Club club)
+//                                            {
+//                                                list.add(club);
+//                                                adapterClub.notifyDataSetChanged();
+//                                            }
+//                                        }, null);
+//                                    }
+//                                }, null);
+//
+//                                continue;
+//                            }
+//
+//                            new GetClub(context, clubName, new GetClub.SuccessCallback()
+//                            {
+//                                @Override
+//                                public void onSuccess(Club club)
+//                                {
+//
+//                                    list.add(club);
+//                                    adapterClub.notifyDataSetChanged();
+//                                }
+//                            }, null);
+//                        }
+//                        return null;
+//                    }
+//
+//                    @Override
+//                    protected void onPostExecute(List<Club> clubs)
+//                    {
+//                        pd.dismiss();
+//                    }
+//                }.execute(clubs.split(","));
+//
+//            }
+//        }, new GetClubsName.FailCallback()
+//        {
+//            @Override
+//            public void onFail()
+//            {
+//                pd.dismiss();
+//                Toast.makeText(context, "加载社团失败", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
     }
 
@@ -252,6 +269,12 @@ public class FragmentGroup extends Fragment implements AdapterView.OnItemClickLi
                 intent = new Intent(context, TypedClubsActivity.class);
                 intent.putExtra(Config.CLUBTYPE, "口才类");
 
+
+
+                //Test
+//                refreshList();
+
+
                 break;
         }
 
@@ -266,38 +289,44 @@ public class FragmentGroup extends Fragment implements AdapterView.OnItemClickLi
 
         if (resultCode == 1)
         {
-            final String clubObjectId = data.getStringExtra(Config.OBJECTID);
-            final String clubName = data.getStringExtra(Config.CLUBNAME);
-            final String clubType = data.getStringExtra(Config.CLUBTYPE);
-            final String clubTime = data.getStringExtra(Config.CLUBTIME);
-            final String clubDescription = data.getStringExtra(Config.CLUBDESCRIPTION);
+            Club club = (Club) data.getSerializableExtra(Config.CLUB);
+            list.add(club);
+            adapterClub.notifyDataSetChanged();
 
-            new GetClubPictureUrl(context, clubName, new GetClubPictureUrl.SuccessCallback()
-            {
-                @Override
-                public void onSuccess(String clubPictureUrl)
-                {
-                    DownloadPicture.downFile(clubPictureUrl, Config.APP_NAME, clubName + ".jpg");
 
-                    StringBuilder sb = new StringBuilder(Config.getCachedData(context, CacheType.CLUB));
-                    sb.append("," + clubName);
-                    Config.cacheData(context, sb.toString(), CacheType.CLUB);
-
-                    Club club = new Club(clubObjectId,clubName, clubType, clubTime, clubDescription,"");
-
-                    list.add(club);
-                    adapterClub.notifyDataSetChanged();
-
-                }
-            }, new GetClubPictureUrl.FailCallback()
-            {
-                @Override
-                public void onFail(String error)
-                {
-
-                    Toast.makeText(context, "加载社团失败"+error, Toast.LENGTH_SHORT).show();
-                }
-            });
+//            final String clubObjectId = data.getStringExtra(Config.OBJECTID);
+//            final String clubName = data.getStringExtra(Config.CLUBNAME);
+//            final String clubType = data.getStringExtra(Config.CLUBTYPE);
+//            final String clubTime = data.getStringExtra(Config.CLUBTIME);
+//            final String clubDescription = data.getStringExtra(Config.CLUBDESCRIPTION);
+//            final String clubIconUri = data.getStringExtra(Config.CLUBICONURI);
+//
+//            new GetClubPictureUrl(context, clubName, new GetClubPictureUrl.SuccessCallback()
+//            {
+//                @Override
+//                public void onSuccess(String clubPictureUrl)
+//                {
+//                    DownloadPicture.downFile(clubPictureUrl, Config.APP_NAME, clubName + ".jpg");
+//
+//                    StringBuilder sb = new StringBuilder(Config.getCachedData(context, CacheType.CLUB));
+//                    sb.append("," + clubName);
+//                    Config.cacheData(context, sb.toString(), CacheType.CLUB);
+//
+//                    Club club = new Club(clubObjectId,clubName, clubType, clubTime, clubDescription,"");
+//
+//                    list.add(club);
+//                    adapterClub.notifyDataSetChanged();
+//
+//                }
+//            }, new GetClubPictureUrl.FailCallback()
+//            {
+//                @Override
+//                public void onFail(String error)
+//                {
+//
+//                    Toast.makeText(context, "加载社团失败"+error, Toast.LENGTH_SHORT).show();
+//                }
+//            });
         }
     }
 
