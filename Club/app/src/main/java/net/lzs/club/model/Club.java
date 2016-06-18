@@ -15,6 +15,18 @@ public class Club extends BmobObject
     private String description;
     private String belongs;
 
+    private String iconUrl;
+
+    public String getIconUrl()
+    {
+        return iconUrl;
+    }
+
+    public void setIconUrl(String iconUrl)
+    {
+        this.iconUrl = iconUrl;
+    }
+
     public Club(){}
 
     public Club(String name, String type, String time, String description)
