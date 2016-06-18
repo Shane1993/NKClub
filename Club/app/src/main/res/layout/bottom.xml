@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="65dp"
+    android:orientation="horizontal"
+    android:background="#4dc0db"
+    >
+
+    <LinearLayout
+        android:id="@+id/tab_group"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/ib_tab_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/group_normal"
+            android:clickable="false"
+            android:background="@android:color/transparent"/>
+
+
+        <TextView
+            android:id="@+id/tv_tab_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="社团"
+            android:textColor="@color/normol"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tab_activity"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/ib_tab_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/activity_normal"
+            android:clickable="false"
+            android:background="@android:color/transparent"/>
+
+        <TextView
+            android:id="@+id/tv_tab_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="活动"
+            android:textColor="@color/normol"
+            />
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/tab_me"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/ib_tab_me"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/me_normal"
+            android:clickable="false"
+            android:background="@android:color/transparent"/>
+
+
+        <TextView
+            android:id="@+id/tv_tab_me"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我"
+            android:textColor="@color/normol"
+            />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

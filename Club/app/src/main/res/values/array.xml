@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="clubtype">
+        <item>体育类</item>
+        <item>校组织</item>
+        <item>院组织</item>
+        <item>实践类</item>
+        <item>公益类</item>
+        <item>口才类</item>
+    </string-array>
+    <string-array name="myInformation">
+        <item>我的活动</item>
+        <item>我的社团</item>
+        <item>我的收藏</item>
+        <item>我的关注</item>
+    </string-array>
+
+
+
+</resources>

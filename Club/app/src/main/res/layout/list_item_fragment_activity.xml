@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="horizontal"
+              android:padding="8dp"
+    >
+
+    <ImageView
+        android:id="@+id/list_item_iv_activity_icon"
+        android:layout_width="108dp"
+        android:layout_height="108dp"
+        android:src="@mipmap/activity1"
+        />
+
+    <LinearLayout
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="108dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/list_item_tv_activity_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="篮球赛"/>
+
+        <TextView
+            android:id="@+id/list_item_tv_activity_organizer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="元组织"
+            android:paddingLeft="3dp"
+            android:padding="3dp"
+            android:background="@drawable/background_blue_stroke"
+            android:textColor="@color/maincolor"/>
+
+        <TextView
+            android:id="@+id/list_item_tv_activity_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:paddingLeft="3dp"
+            android:padding="3dp"
+            android:text="2016年4月11日~4月16日"
+            android:background="@drawable/background_blue_stroke"
+            android:textColor="@color/maincolor"/>
+
+        <TextView
+            android:id="@+id/list_item_tv_activity_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="广东实打实你是今晚的主角不是这样的阿斯顿"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textColor="@android:color/darker_gray"/>
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

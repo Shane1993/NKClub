@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#4dc0db"
+        android:paddingLeft="16dp"
+        android:paddingRight="8dp"
+        >
+
+        <TextView
+
+            android:id="@+id/activity_clubintroduction_tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="爱心俱乐部"
+            android:textColor="#ffffff"
+            android:textSize="24sp"
+            />
+
+        <Button
+            android:id="@+id/activity_clubintroduction_btn_collected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="?android:selectableItemBackground"
+            android:paddingTop="8dp"
+            android:text="关注"
+            android:textColor="#f3884a"
+            android:textSize="20sp"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="类别："
+                android:textAppearance="?android:textAppearanceMedium"
+                />
+            <TextView
+                android:id="@+id/activity_clubintroduction_tv_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="晓组织"
+                android:textColor="@color/maincolor"
+                android:textAppearance="?android:textAppearanceMedium"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="成立时间："
+                android:textAppearance="?android:textAppearanceMedium"
+                />
+            <TextView
+                android:id="@+id/activity_clubintroduction_tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2016年4月20日"
+                android:textColor="@color/maincolor"
+                android:textAppearance="?android:textAppearanceMedium"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/activity_clubintroduction_tv_description"
+            android:paddingTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:text="年十大十大啊是的咯就是好的啊速度加快卡号是多久啊啊三等奖圣诞节卡的杀手锏打算尽快的啊\n连理电话：123456\n时间：12312"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>
