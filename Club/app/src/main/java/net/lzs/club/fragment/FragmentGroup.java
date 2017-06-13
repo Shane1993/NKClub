@@ -1,6 +1,5 @@
 package net.lzs.club.fragment;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;

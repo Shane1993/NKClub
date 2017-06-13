@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:alpha="0.9"
+    android:background="#ffffff"
+    android:orientation="horizontal"
+    >
+
+    <LinearLayout
+        android:id="@+id/ll_tab_home"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/ib_tab_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.9"
+            android:background="@android:color/transparent"
+            android:clickable="false"
+
+            android:src="@mipmap/home_normal"/>
+
+
+        <TextView
+            android:id="@+id/tv_tab_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home"
+            android:alpha="0.9"
+            android:textColor="@color/normol"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_tab_recommend"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/ib_tab_recommend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.9"
+            android:background="@android:color/transparent"
+            android:clickable="false"
+
+            android:src="@mipmap/recommend_normal"/>
+
+        <TextView
+            android:id="@+id/tv_tab_recommend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recommend"
+            android:alpha="0.9"
+            android:textColor="@color/normol"
+            />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_tab_shopcart"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:alpha="0.9"
+        android:gravity="center"
+
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/ib_tab_shopcart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.9"
+            android:background="@android:color/transparent"
+            android:clickable="false"
+
+            android:src="@mipmap/shopcart_normal"/>
+
+
+        <TextView
+            android:id="@+id/tv_tab_shopcart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/shop_cart"
+            android:alpha="0.9"
+            android:textColor="@color/normol"
+            />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_tab_my"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/ib_tab_my"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.9"
+            android:background="@android:color/transparent"
+            android:clickable="false"
+
+            android:src="@mipmap/my_normal"/>
+
+
+        <TextView
+            android:id="@+id/tv_tab_my"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/my"
+            android:alpha="0.9"
+            android:textColor="@color/normol"
+            />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

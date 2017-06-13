@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include layout="@layout/top_shop_cart"/>
+
+    <TextView
+        android:id="@+id/tv_shopcart_null"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/shopcart_null"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:visibility="gone"
+
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_shopcart"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    </android.support.v7.widget.RecyclerView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:orientation="horizontal"
+        android:background="#f5f5f5"
+        android:paddingLeft="10dp"
+        >
+
+        <CheckBox
+            android:id="@+id/cb_shopcart_select_all"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="@string/select_all"
+            android:textSize="18sp"
+            android:checked="false"
+            />
+
+        <LinearLayout
+            android:id="@+id/ll_shopcart_delete"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"/>
+
+            <Button
+                android:id="@+id/btn_shopcart_delete"
+                android:layout_gravity="center"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="10dp"
+                android:text="删除"
+                android:textSize="21sp"
+                android:textColor="@color/backgrounHot1"
+                android:background="@drawable/background_button_red_stroke"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1.5"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/sum"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:textSize="19sp"
+                android:textColor="@color/colorPayText"
+                />
+
+            <TextView
+                android:id="@+id/tv_shopcart_sum"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="0.00"
+                android:gravity="center_vertical"
+                android:textSize="19sp"
+                android:textColor="@color/colorPayText"
+
+                />
+
+
+        </LinearLayout>
+
+
+
+
+        <Button
+            android:id="@+id/btn_shopcart_confirm_buy"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textSize="20sp"
+            android:text="@string/go_to_pay"
+            android:gravity="center"
+            android:background="@color/colorPayBackground"
+            android:textColor="@android:color/white"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        />
+
+</LinearLayout>
