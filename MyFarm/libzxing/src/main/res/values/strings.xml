@@ -1,0 +1,7 @@
+<resources>
+    <string name="zxing_bar_name">ZxingLib</string>
+
+    <string name="scan">扫一扫</string>
+    <string name="home">首页</string>
+
+</resources>

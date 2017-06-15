@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <color name="normol">#6C6C6C</color>
+    <color name="pressed">#22b14c</color>
+    <color name="maincolor">#ccffffff</color>
+    <color name="textview">#31857d</color>
+
+    <color name="backgrounHot1">#fa4923</color>
+    <color name="backgrounHot2">#ff7e00</color>
+    <color name="backgrounHot3">#ffc000</color>
+    <color name="backgrounHotOther">#e8e8e8</color>
+    <color name="textHotAdvance">#ffffff</color>
+    <color name="textHotOther">#7c7c7c</color>
+
+    <color name="colorPayBackground">#f56c5b</color>
+    <color name="colorPayText">#ff422a</color>
+
+    <color name="colorGray">#888888</color>
+    <color name="colorLightGray">#aaaaaa</color>
+
+
+
+
+
+
+</resources>
