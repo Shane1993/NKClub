@@ -1,12 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="aa"
         />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="register"
+                />
+
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="login"
+                />
+
+            <Button
+                android:id="@+id/btn_addcart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="btn_addcart"
+                />
+
+            <Button
+                android:id="@+id/btn_addcategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="btn_addcategory"
+                />
+
+            <Button
+                android:id="@+id/btn_addorder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="btn_addorder"
+                />
+
+            <Button
+                android:id="@+id/btn_addproduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="btn_addproduct"
+                />
+
+            <Button
+                android:id="@+id/btn_delproductbyname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="btn_delproductbyname"
+                />
+
+            <Button
+                android:id="@+id/btn_getallcategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="btn_getallcategory"
+                />
+
+            <Button
+                android:id="@+id/btn_getcartbyid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="btn_getcartbyid"
+                />
+
+            <Button
+                android:id="@+id/btn_getcartbyuser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="btn_getcartbyuser"
+                />
+
+            <Button
+                android:id="@+id/btn_getorderbyid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="btn_getorderbyid"
+                />
+
+            <Button
+                android:id="@+id/btn_getorderbyuser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="btn_getorderbyuser"
+                />
+
+            <Button
+                android:id="@+id/btn_getproductbycategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="btn_getproductbycategory"
+                />
+
+            <Button
+                android:id="@+id/btn_getproductbyname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="btn_getproductbyname"
+                />
+
+
+        </LinearLayout>
+
+    </ScrollView>
 </LinearLayout>
