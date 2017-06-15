@@ -16,9 +16,13 @@ public class GetAllCategory {
 
     private static final String TAG = "GetAllCategory";
 
-    public GetAllCategory(AbstractMessage proto, final Callback callback) {
+    public GetAllCategory(final Callback callback) {
 
-        new BasicNetConnection(proto, ModelProto.ReqType.tReqTypeGetAllCategory.name(), new BasicNetConnection.Callback() {
+        ModelProto.GetAllCategoryProto proto = ModelProto.GetAllCategoryProto.newBuilder()
+                .setReqtype(ModelProto.ReqType.tReqTypeGetAllCategory)
+                .build();
+
+        new BasicNetConnection(proto, proto.getReqtype().name(), new BasicNetConnection.Callback() {
             @Override
             public void onResponse(byte[] rspProto) {
                 if (callback == null) {

@@ -10,9 +10,14 @@ import com.nku.myfarm.model_proto.ModelProto;
 
 public class GetOrderById {
 
-    public GetOrderById(AbstractMessage proto, final Callback callback) {
+    public GetOrderById(String orderId, final Callback callback) {
 
-        new BasicNetConnection(proto, ModelProto.ReqType.tReqTypeGetOrderById.name(), new BasicNetConnection.Callback() {
+        ModelProto.GetOrderByIdProto proto = ModelProto.GetOrderByIdProto.newBuilder()
+                .setOrderid(orderId)
+                .setReqtype(ModelProto.ReqType.tReqTypeGetOrderById)
+                .build();
+
+        new BasicNetConnection(proto, proto.getReqtype().name(), new BasicNetConnection.Callback() {
             @Override
             public void onResponse(byte[] rspProto) {
                 if (callback == null) {

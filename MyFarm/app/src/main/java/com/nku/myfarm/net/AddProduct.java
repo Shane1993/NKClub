@@ -12,9 +12,17 @@ public class AddProduct {
 
     private Callback callback;
 
-    public AddProduct(AbstractMessage proto, final Callback callback) {
+    public AddProduct(String proName, float price, String picName, String categoryId, final Callback callback) {
 
-        new BasicNetConnection(proto, ModelProto.ReqType.tReqTypeAddProduct.name(), new BasicNetConnection.Callback() {
+        ModelProto.AddProductProto proto = ModelProto.AddProductProto.newBuilder()
+                .setProname(proName)
+                .setPrice(price)
+                .setPicname(picName)
+                .setCategoryid(categoryId)
+                .setReqtype(ModelProto.ReqType.tReqTypeAddProduct)
+                .build();
+
+        new BasicNetConnection(proto, proto.getReqtype().name(), new BasicNetConnection.Callback() {
             @Override
             public void onResponse(byte[] rspProto) {
                 if (callback == null) {

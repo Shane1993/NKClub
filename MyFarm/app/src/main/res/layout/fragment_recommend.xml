@@ -4,11 +4,12 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <TextView
+    <ListView
+        android:id="@+id/lv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="aa"
-        />
+        android:layout_height="wrap_content"></ListView>
+
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -18,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
 
 
             <Button

@@ -10,9 +10,14 @@ import com.nku.myfarm.model_proto.ModelProto;
 
 public class GetOrderByUser {
 
-    public GetOrderByUser(AbstractMessage proto, final Callback callback) {
+    public GetOrderByUser(String userName, final Callback callback) {
 
-        new BasicNetConnection(proto, ModelProto.ReqType.tReqTypeGetOrderByUser.name(), new BasicNetConnection.Callback() {
+        ModelProto.GetOrderByUserProto proto = ModelProto.GetOrderByUserProto.newBuilder()
+                .setUsername(userName)
+                .setReqtype(ModelProto.ReqType.tReqTypeGetOrderByUser)
+                .build();
+
+        new BasicNetConnection(proto, proto.getReqtype().name(), new BasicNetConnection.Callback() {
             @Override
             public void onResponse(byte[] rspProto) {
                 if (callback == null) {

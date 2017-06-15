@@ -10,9 +10,14 @@ import com.nku.myfarm.model_proto.ModelProto;
 
 public class GetCartByUser {
 
-    public GetCartByUser(AbstractMessage proto, final Callback callback) {
+    public GetCartByUser(String userName, final Callback callback) {
 
-        new BasicNetConnection(proto, ModelProto.ReqType.tReqTypeGetCartByUser.name(), new BasicNetConnection.Callback() {
+        ModelProto.GetCartByUserProto proto = ModelProto.GetCartByUserProto.newBuilder()
+                .setUsername(userName)
+                .setReqtype(ModelProto.ReqType.tReqTypeGetCartByUser)
+                .build();
+
+        new BasicNetConnection(proto, proto.getReqtype().name(), new BasicNetConnection.Callback() {
             @Override
             public void onResponse(byte[] rspProto) {
                 if (callback == null) {

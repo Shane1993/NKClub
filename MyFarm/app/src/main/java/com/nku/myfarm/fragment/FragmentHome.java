@@ -169,7 +169,7 @@ public class FragmentHome extends Fragment {
             secondCategoties = fc.getCids();
 //            int i = 0;
             for (SecondCategory sc : secondCategoties) {
-                sc.setImg(NetConfig.SERVER_URL + "categories/" + fc.getName() + "/" + sc.getImg() + ".imageset/" + sc.getName() + ".jpg");
+                sc.setImg(NetConfig.SERVER_DATA_URL + "categories/" + fc.getName() + "/" + sc.getImg() + ".imageset/" + sc.getName() + ".jpg");
                 list.add(sc);
 //                i++;
             }

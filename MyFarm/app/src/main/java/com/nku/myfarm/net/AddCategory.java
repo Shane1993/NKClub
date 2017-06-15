@@ -11,9 +11,14 @@ import com.nku.myfarm.model_proto.ModelProto;
 public class AddCategory {
 
 
-    public AddCategory(AbstractMessage proto, final Callback callback) {
+    public AddCategory(String categoryName, final Callback callback) {
 
-        new BasicNetConnection(proto, ModelProto.ReqType.tReqTypeAddCategory.name(), new BasicNetConnection.Callback() {
+        ModelProto.AddCategoryProto proto = ModelProto.AddCategoryProto.newBuilder()
+                .setCategoryname(categoryName)
+                .setReqtype(ModelProto.ReqType.tReqTypeAddCategory)
+                .build();
+
+        new BasicNetConnection(proto, proto.getReqtype().name(), new BasicNetConnection.Callback() {
             @Override
             public void onResponse(byte[] rspProto) {
                 if (callback == null) {

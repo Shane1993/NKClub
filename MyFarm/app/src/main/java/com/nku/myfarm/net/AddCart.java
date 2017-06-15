@@ -10,9 +10,18 @@ import com.nku.myfarm.model_proto.ModelProto;
 
 public class AddCart {
 
-    public AddCart(AbstractMessage proto, final Callback callback) {
+    public AddCart(String userName, float amounts, String proId, String proName,final Callback callback) {
 
-        new BasicNetConnection(proto, ModelProto.ReqType.tReqTypeAddCart.name(), new BasicNetConnection.Callback() {
+        ModelProto.AddCartProto proto =
+                ModelProto.AddCartProto.newBuilder()
+                        .setUsername(userName)
+                        .setAmounts(amounts)
+                        .setProid(proId)
+                        .setProname(proName)
+                        .setReqtype(ModelProto.ReqType.tReqTypeAddCart)
+                        .build();
+
+        new BasicNetConnection(proto, proto.getReqtype().name(), new BasicNetConnection.Callback() {
             @Override
             public void onResponse(byte[] rspProtoStr) {
                 if (callback == null) {

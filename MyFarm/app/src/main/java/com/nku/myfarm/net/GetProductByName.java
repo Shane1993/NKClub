@@ -12,9 +12,14 @@ public class GetProductByName {
 
     private Callback callback;
 
-    public GetProductByName(AbstractMessage proto, final Callback callback) {
+    public GetProductByName(String proName, final Callback callback) {
 
-        new BasicNetConnection(proto, ModelProto.ReqType.tReqTypeGetProductByName.name(), new BasicNetConnection.Callback() {
+        ModelProto.GetProductByNameProto proto = ModelProto.GetProductByNameProto.newBuilder()
+                .setProname(proName)
+                .setReqtype(ModelProto.ReqType.tReqTypeGetProductByName)
+                .build();
+
+        new BasicNetConnection(proto, proto.getReqtype().name(), new BasicNetConnection.Callback() {
             @Override
             public void onResponse(byte[] rspProto) {
                 if (callback == null) {

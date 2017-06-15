@@ -12,9 +12,15 @@ public class Login {
 
     private Callback callback;
 
-    public Login(AbstractMessage proto, final Callback callback) {
+    public Login(String userName, String password, final Callback callback) {
 
-        new BasicNetConnection(proto, ModelProto.ReqType.tReqTypeLogin.name(), new BasicNetConnection.Callback() {
+        ModelProto.LoginProto proto = ModelProto.LoginProto.newBuilder()
+                .setUsername(userName)
+                .setPassword(password)
+                .setReqtype(ModelProto.ReqType.tReqTypeLogin)
+                .build();
+
+        new BasicNetConnection(proto, proto.getReqtype().name(), new BasicNetConnection.Callback() {
             @Override
             public void onResponse(byte[] rspProto) {
                 if (callback == null) {

@@ -10,9 +10,19 @@ import com.nku.myfarm.model_proto.ModelProto;
 
 public class AddOrder {
 
-    public AddOrder(AbstractMessage proto, final Callback callback) {
+    public AddOrder(String userName, float amounts, String proId, String proName, float totPrice, final Callback callback) {
 
-        new BasicNetConnection(proto, ModelProto.ReqType.tReqTypeAddOrder.name(), new BasicNetConnection.Callback() {
+        ModelProto.AddOrderProto proto = ModelProto.AddOrderProto.newBuilder()
+                .setUsername(userName)
+                .setAmounts(amounts)
+                .setProid(proId)
+                .setProname(proName)
+                .setTotprice(totPrice)
+                .setReqtype(ModelProto.ReqType.tReqTypeAddOrder)
+                .build();
+
+
+        new BasicNetConnection(proto, proto.getReqtype().name(), new BasicNetConnection.Callback() {
             @Override
             public void onResponse(byte[] rspProto) {
                 if (callback == null) {

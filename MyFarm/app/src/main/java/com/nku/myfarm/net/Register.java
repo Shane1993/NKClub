@@ -12,9 +12,15 @@ public class Register {
 
     private Callback callback;
 
-    public Register(AbstractMessage proto, final Callback callback) {
+    public Register(String userName, String password, final Callback callback) {
 
-        new BasicNetConnection(proto, ModelProto.ReqType.tReqTypeRegister.name(), new BasicNetConnection.Callback() {
+        ModelProto.RegisterProto proto = ModelProto.RegisterProto.newBuilder()
+                .setUsername(userName)
+                .setPassword(password)
+                .setReqtype(ModelProto.ReqType.tReqTypeRegister)
+                .build();
+
+        new BasicNetConnection(proto, proto.getReqtype().name(), new BasicNetConnection.Callback() {
             @Override
             public void onResponse(byte[] rspProto) {
                 if (callback == null) {

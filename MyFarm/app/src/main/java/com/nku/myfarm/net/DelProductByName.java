@@ -10,9 +10,14 @@ import com.nku.myfarm.model_proto.ModelProto;
 
 public class DelProductByName {
 
-    public DelProductByName(AbstractMessage proto, final Callback callback) {
+    public DelProductByName(String proName, final Callback callback) {
 
-        new BasicNetConnection(proto, ModelProto.ReqType.tReqTypeDelProductByName.name(), new BasicNetConnection.Callback() {
+        ModelProto.DelProductByNameProto proto = ModelProto.DelProductByNameProto.newBuilder()
+                .setProname(proName)
+                .setReqtype(ModelProto.ReqType.tReqTypeDelProductByName)
+                .build();
+
+        new BasicNetConnection(proto, proto.getReqtype().name(), new BasicNetConnection.Callback() {
             @Override
             public void onResponse(byte[] rspProto) {
                 if (callback == null) {

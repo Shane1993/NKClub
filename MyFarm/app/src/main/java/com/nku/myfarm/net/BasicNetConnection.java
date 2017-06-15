@@ -1,20 +1,14 @@
 package com.nku.myfarm.net;
 
-import android.telecom.Call;
-import android.util.Log;
-
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.google.protobuf.AbstractMessage;
-import com.google.protobuf.InvalidProtocolBufferException;
 import com.nku.myfarm.MyApplication;
-import com.nku.myfarm.model_proto.ModelProto;
+import com.nku.myfarm.net.request.MultipartRequest;
 import com.nku.myfarm.util.ProtoUtil;
 
 import java.io.File;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by Shane on 2017/6/14.
@@ -32,7 +26,7 @@ public class BasicNetConnection {
 
         File f = ProtoUtil.getFileFromProto(reqProto, typeName);
 
-        MultipartRequest request = new MultipartRequest(NetConfig.SERVER_URL, new Response.ErrorListener() {
+        MultipartRequest request = new MultipartRequest(NetConfig.SERVER_DATA_URL, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 if(callback != null) {

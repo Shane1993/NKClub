@@ -10,9 +10,14 @@ import com.nku.myfarm.model_proto.ModelProto;
 
 public class GetProductByCategory {
 
-    public GetProductByCategory(AbstractMessage proto, final Callback callback) {
+    public GetProductByCategory(String categoryId, final Callback callback) {
 
-        new BasicNetConnection(proto, ModelProto.ReqType.tReqTypeGetProductByCategory.name(), new BasicNetConnection.Callback() {
+        ModelProto.GetProductByCateGoryProto proto = ModelProto.GetProductByCateGoryProto.newBuilder()
+                .setCategoryid(categoryId)
+                .setReqtype(ModelProto.ReqType.tReqTypeGetProductByCategory)
+                .build();
+
+        new BasicNetConnection(proto, proto.getReqtype().name(), new BasicNetConnection.Callback() {
             @Override
             public void onResponse(byte[] rspProto) {
                 if (callback == null) {

@@ -1,4 +1,4 @@
-package com.nku.myfarm.net;
+package com.nku.myfarm.net.request;
 
 import android.text.TextUtils;
 import android.util.Log;
@@ -11,6 +11,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.nku.myfarm.model_proto.ModelProto;
+import com.nku.myfarm.net.NetConfig;
 
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
